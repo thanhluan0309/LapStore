@@ -62,16 +62,16 @@ export default function HeroSection() {
       {reducedMotion ? (
         <>
           <div
-            className="absolute top-1/4 right-1/3 w-[500px] h-[500px] pointer-events-none"
+            className="absolute top-1/4 right-1/3 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] pointer-events-none"
             style={{ opacity: 0.2 }}
           >
-            <div className="w-full h-full rounded-full blur-[120px]" style={{ background: accent.glow }} />
+            <div className="w-full h-full rounded-full blur-[80px] sm:blur-[120px]" style={{ background: accent.glow }} />
           </div>
           <div
-            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] pointer-events-none"
+            className="absolute bottom-1/4 left-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] pointer-events-none"
             style={{ opacity: 0.1 }}
           >
-            <div className="w-full h-full rounded-full blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
+            <div className="w-full h-full rounded-full blur-[60px] sm:blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
           </div>
         </>
       ) : (
@@ -80,22 +80,22 @@ export default function HeroSection() {
             key={current + "orb1"}
             animate={{ opacity: [0.15, 0.25, 0.15] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 right-1/3 w-[500px] h-[500px] pointer-events-none"
+            className="absolute top-1/4 right-1/3 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] pointer-events-none"
           >
-            <div className="w-full h-full rounded-full blur-[120px]" style={{ background: accent.glow }} />
+            <div className="w-full h-full rounded-full blur-[80px] sm:blur-[120px]" style={{ background: accent.glow }} />
           </motion.div>
           <motion.div
             animate={{ opacity: [0.08, 0.15, 0.08] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] pointer-events-none"
+            className="absolute bottom-1/4 left-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] pointer-events-none"
           >
-            <div className="w-full h-full rounded-full blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
+            <div className="w-full h-full rounded-full blur-[60px] sm:blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
           </motion.div>
         </>
       )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center py-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center py-8 lg:py-12">
           {/* Text */}
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -106,10 +106,10 @@ export default function HeroSection() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="space-y-6 z-10"
+              className="space-y-4 sm:space-y-6 z-10"
               style={{ willChange: "transform, opacity" }}
             >
-              <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-5">
+              <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-3 sm:space-y-5">
                 {/* Badge */}
                 <motion.span
                   variants={itemVariants}
@@ -131,11 +131,11 @@ export default function HeroSection() {
 
                 {/* Title */}
                 <motion.div variants={itemVariants}>
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-[#E5E7EB] leading-none tracking-tight">
+                  <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-[#E5E7EB] leading-none tracking-tight">
                     {slide.title}
                   </h1>
                   <h1
-                    className="text-5xl sm:text-6xl lg:text-7xl font-black leading-none tracking-tight mt-1"
+                    className="text-3xl sm:text-5xl lg:text-7xl font-black leading-none tracking-tight mt-1"
                     style={{ color: accent.neon, textShadow: `0 0 30px ${accent.neon}60` }}
                   >
                     {slide.highlight}
@@ -144,7 +144,7 @@ export default function HeroSection() {
 
                 {/* Subtitle + desc */}
                 <motion.div variants={itemVariants}>
-                  <p className="text-[#00FF88] font-semibold text-lg">{slide.subtitle}</p>
+                  <p className="text-[#00FF88] font-semibold text-base sm:text-lg">{slide.subtitle}</p>
                   <p className="text-[#E5E7EB]/50 mt-1 max-w-md leading-relaxed">{slide.description}</p>
                 </motion.div>
 
@@ -152,13 +152,13 @@ export default function HeroSection() {
                 <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-5 pt-2">
                   <div>
                     <p className="text-[#E5E7EB]/40 text-xs font-medium uppercase tracking-widest">Starting from</p>
-                    <p className="text-4xl font-black text-[#E5E7EB] mt-0.5">{formatPrice(slide.price)}</p>
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB] mt-0.5">{formatPrice(slide.price)}</p>
                   </div>
                   <div className="flex gap-3 flex-wrap">
                     <motion.button
                       whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255,184,0,0.5)" }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-[#0F1419] bg-[#FFB800] text-sm tracking-wide"
+                      className="flex items-center gap-2 px-4 sm:px-7 py-2 sm:py-3.5 rounded-xl font-bold text-[#0F1419] bg-[#FFB800] text-xs sm:text-sm tracking-wide"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       {slide.cta}
@@ -166,7 +166,7 @@ export default function HeroSection() {
                     <motion.button
                       whileHover={{ scale: 1.05, borderColor: accent.neon, color: accent.neon }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-[#E5E7EB]/60 border border-[#E5E7EB]/15 text-sm transition-colors"
+                      className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3.5 rounded-xl font-semibold text-[#E5E7EB]/60 border border-[#E5E7EB]/15 text-xs sm:text-sm transition-colors"
                     >
                       Specs <ArrowRight className="w-4 h-4" />
                     </motion.button>
@@ -174,14 +174,14 @@ export default function HeroSection() {
                 </motion.div>
 
                 {/* Stats */}
-                <motion.div variants={itemVariants} className="flex gap-8 pt-2">
+                <motion.div variants={itemVariants} className="flex gap-4 sm:gap-8 pt-2">
                   {[
                     { value: "50K+", label: "Customers" },
                     { value: "4.9★", label: "Avg Rating" },
                     { value: "500+", label: "Models" },
                   ].map((s) => (
                     <div key={s.label}>
-                      <p className="text-xl font-black" style={{ color: accent.neon }}>{s.value}</p>
+                      <p className="text-base sm:text-xl font-black" style={{ color: accent.neon }}>{s.value}</p>
                       <p className="text-xs text-[#E5E7EB]/40 mt-0.5">{s.label}</p>
                     </div>
                   ))}
@@ -231,7 +231,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 0.8, x: -10 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
-                  className="absolute -bottom-5 -left-5 bg-[#1A2129] border border-[#00FF88]/20 rounded-2xl p-3 shadow-xl flex items-center gap-2 glow-neon-sm"
+                  className="hidden sm:flex absolute -bottom-3 sm:-bottom-5 -left-3 sm:-left-5 bg-[#1A2129] border border-[#00FF88]/20 rounded-2xl p-3 shadow-xl items-center gap-2 glow-neon-sm"
                 >
                   <div className="w-8 h-8 bg-[#00FF88] rounded-lg flex items-center justify-center">
                     <Zap className="w-4 h-4 text-[#0F1419]" />
@@ -247,10 +247,10 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 0.8, x: 10 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.4 }}
-                  className="absolute -top-5 -right-5 bg-[#1A2129] border border-[#FFB800]/20 rounded-2xl p-3 shadow-xl"
+                  className="hidden sm:block absolute -top-3 sm:-top-5 -right-3 sm:-right-5 bg-[#1A2129] border border-[#FFB800]/20 rounded-2xl p-3 shadow-xl"
                 >
                   <p className="text-[10px] text-[#E5E7EB]/40 font-medium uppercase tracking-wide">From</p>
-                  <p className="text-xl font-black text-[#FFB800]">{formatPrice(slide.price)}</p>
+                  <p className="text-base sm:text-xl font-black text-[#FFB800]">{formatPrice(slide.price)}</p>
                 </motion.div>
               </div>
             </motion.div>

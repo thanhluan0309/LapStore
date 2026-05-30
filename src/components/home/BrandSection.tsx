@@ -7,7 +7,7 @@ import { brands } from "@/data/brands";
 
 export default function BrandSection() {
   return (
-    <section className="py-14 bg-[#1A2129] border-y border-[#00FF88]/8 relative overflow-hidden">
+    <section className="py-10 sm:py-14 bg-[#1A2129] border-y border-[#00FF88]/8 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00FF88]/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00FF88]/20 to-transparent" />
 
@@ -21,7 +21,7 @@ export default function BrandSection() {
           Official Partner Brands
         </motion.p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 lg:gap-6">
           {brands.map((brand, i) => (
             <motion.div
               key={brand.slug}

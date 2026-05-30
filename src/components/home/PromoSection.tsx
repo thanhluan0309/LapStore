@@ -26,9 +26,9 @@ function TimeBlock({ value, label }: { value: number; label: string }) {
         initial={{ y: -12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="w-16 h-16 bg-[#0F1419] border border-[#00FF88]/20 rounded-xl flex items-center justify-center glow-neon-sm"
+        className="w-12 sm:w-16 h-12 sm:h-16 bg-[#0F1419] border border-[#00FF88]/20 rounded-xl flex items-center justify-center glow-neon-sm"
       >
-        <span className="text-2xl font-black text-[#00FF88] font-mono tabular-nums">
+        <span className="text-xl sm:text-2xl font-black text-[#00FF88] font-mono tabular-nums">
           {String(value).padStart(2, "0")}
         </span>
       </motion.div>
@@ -48,21 +48,21 @@ export default function PromoSection() {
   const { hours, minutes, seconds } = useCountdown(12 * 3_600_000 + 34 * 60_000 + 56_000);
 
   return (
-    <section className="py-20 bg-[#0F1419] relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#0F1419] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-80 h-80 bg-[#FFB800]/6 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00FF88]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-48 sm:w-80 h-48 sm:h-80 bg-[#FFB800]/6 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-56 sm:w-96 h-56 sm:h-96 bg-[#00FF88]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Horizontal neon line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00FF88]/30 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
           {/* Left — Deal info */}
-          <div className="space-y-7">
+          <div className="space-y-5 sm:space-y-7">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -109,9 +109,9 @@ export default function PromoSection() {
               </p>
               <div className="flex items-end gap-3">
                 <TimeBlock value={hours}   label="Hrs"  />
-                <span className="text-2xl font-black text-[#FFB800]/40 mb-5">:</span>
+                <span className="text-lg sm:text-2xl font-black text-[#FFB800]/40 mb-4 sm:mb-5">:</span>
                 <TimeBlock value={minutes} label="Min"  />
-                <span className="text-2xl font-black text-[#FFB800]/40 mb-5">:</span>
+                <span className="text-lg sm:text-2xl font-black text-[#FFB800]/40 mb-4 sm:mb-5">:</span>
                 <TimeBlock value={seconds} label="Sec"  />
               </div>
             </motion.div>
@@ -123,7 +123,7 @@ export default function PromoSection() {
               transition={{ delay: 0.3 }}
               whileHover={{ scale: 1.04, boxShadow: "0 0 36px rgba(255,184,0,0.45)" }}
               whileTap={{ scale: 0.96 }}
-              className="flex items-center gap-2 px-8 py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-sm tracking-wide"
+              className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-sm tracking-wide"
             >
               Shop Flash Sale <ArrowRight className="w-4 h-4" />
             </motion.button>

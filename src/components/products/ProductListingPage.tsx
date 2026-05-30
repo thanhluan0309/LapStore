@@ -227,7 +227,7 @@ export default function ProductListingPage() {
           <motion.p initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} className="text-[#00FF88] text-xs font-semibold uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
             <span className="w-5 h-px bg-[#00FF88]" /> All Products
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }} className="text-3xl sm:text-4xl font-black text-[#E5E7EB]">
+          <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }} className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]">
             Browse <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>Laptops</span>
           </motion.h1>
         </div>
@@ -251,7 +251,7 @@ export default function ProductListingPage() {
           {/* Main */}
           <div className="flex-1 min-w-0">
             {/* Sort bar */}
-            <div className="flex items-center justify-between mb-6 gap-4">
+            <div className="flex flex-wrap items-center justify-between mb-5 sm:mb-6 gap-y-2 gap-x-4">
               <p className="text-sm text-[#E5E7EB]/40">
                 Showing <span className="text-[#00FF88] font-semibold">{filtered.length}</span> laptop{filtered.length !== 1 ? "s" : ""}
               </p>
@@ -333,7 +333,7 @@ export default function ProductListingPage() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed inset-y-0 left-0 w-80 bg-[#1A2129] z-50 p-6 overflow-y-auto lg:hidden"
+              className="fixed inset-y-0 left-0 w-full max-w-sm bg-[#1A2129] z-50 p-6 overflow-y-auto lg:hidden"
             >
               <div className="flex items-center justify-between mb-6">
                 <p className="text-base font-bold text-[#E5E7EB] flex items-center gap-2">

@@ -60,7 +60,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
         </div>
 
         {/* Main grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
           {/* Gallery */}
           <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <ImageGallery images={product.images} name={product.name} />
@@ -85,7 +85,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
             </div>
 
             {/* Name */}
-            <h1 className="text-3xl sm:text-4xl font-black text-[#E5E7EB] leading-tight">{product.name}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB] leading-tight">{product.name}</h1>
 
             {/* Rating */}
             <div className="flex items-center gap-3">
@@ -100,9 +100,9 @@ export default function ProductDetailPage({ product }: { product: Product }) {
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="text-4xl font-black text-[#E5E7EB]">{formatPrice(product.price)}</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]">{formatPrice(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-lg text-[#E5E7EB]/25 line-through">{formatPrice(product.originalPrice)}</span>
+                <span className="text-base sm:text-lg text-[#E5E7EB]/25 line-through">{formatPrice(product.originalPrice)}</span>
               )}
               {discount > 0 && (
                 <span className="text-sm text-[#FFB800] font-semibold">Save {formatPrice(product.originalPrice! - product.price)}</span>
@@ -153,7 +153,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
                   whileHover={product.inStock ? { scale: 1.02, boxShadow: "0 0 30px rgba(255,184,0,0.4)" } : {}}
                   whileTap={product.inStock ? { scale: 0.97 } : {}}
                   className={cn(
-                    "flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-sm transition-all",
+                    "flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm transition-all",
                     product.inStock
                       ? addedToCart ? "bg-[#00FF88] text-[#0F1419]" : "bg-[#FFB800] text-[#0F1419]"
                       : "bg-[#E5E7EB]/5 text-[#E5E7EB]/20 cursor-not-allowed"
@@ -166,7 +166,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
                   onClick={() => toggle(product)}
                   whileTap={{ scale: 0.9 }}
                   className={cn(
-                    "w-12 h-12 rounded-xl border flex items-center justify-center transition-all",
+                    "w-10 sm:w-12 h-10 sm:h-12 rounded-xl border flex items-center justify-center transition-all",
                     wishlisted ? "bg-red-500/10 border-red-500/30 text-red-400" : "bg-[#1A2129] border-[#E5E7EB]/8 text-[#E5E7EB]/40 hover:border-red-500/30 hover:text-red-400"
                   )}
                 >
@@ -207,7 +207,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
               <span className="w-5 h-px bg-[#00FF88]" /> You Might Also Like
             </p>
             <h2 className="text-2xl font-black text-[#E5E7EB] mb-6">Related <span className="text-[#00FF88]">Laptops</span></h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
               {related.map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           </motion.div>

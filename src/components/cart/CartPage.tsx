@@ -49,7 +49,7 @@ export default function CartPage() {
           <p className="text-[#00FF88] text-xs font-semibold uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
             <span className="w-5 h-px bg-[#00FF88]" /> Your Order
           </p>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#E5E7EB]">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]">
             Shopping <span className="text-[#00FF88]">Cart</span>
           </h1>
         </div>
@@ -69,14 +69,14 @@ export default function CartPage() {
             <Link href="/products">
               <motion.span
                 whileHover={{ scale: 1.04, boxShadow: "0 0 24px rgba(0,255,136,0.3)" }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#00FF88] text-[#0F1419] font-bold rounded-xl text-sm"
+                className="inline-flex items-center gap-2 px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[#00FF88] text-[#0F1419] font-bold rounded-xl text-xs sm:text-sm"
               >
                 Browse Laptops <ArrowRight className="w-4 h-4" />
               </motion.span>
             </Link>
           </motion.div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-5 sm:gap-8">
             {/* Items list */}
             <div className="lg:col-span-2 space-y-4">
               <AnimatePresence initial={false}>
@@ -223,7 +223,7 @@ export default function CartPage() {
                     <span>Est. Tax (8.5%)</span>
                     <span>{formatPrice(tax)}</span>
                   </div>
-                  <div className="flex justify-between font-black text-lg text-[#E5E7EB] pt-3 border-t border-[#E5E7EB]/8">
+                  <div className="flex justify-between font-black text-base sm:text-lg text-[#E5E7EB] pt-3 border-t border-[#E5E7EB]/8">
                     <span>Total</span>
                     <span className="text-[#00FF88]" style={{ textShadow: "0 0 16px rgba(0,255,136,0.4)" }}>{formatPrice(total)}</span>
                   </div>
@@ -234,7 +234,7 @@ export default function CartPage() {
                   <motion.div
                     whileHover={{ scale: 1.02, boxShadow: "0 0 28px rgba(255,184,0,0.4)" }}
                     whileTap={{ scale: 0.97 }}
-                    className={cn("flex items-center justify-center gap-2 py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-sm cursor-pointer")}
+                    className={cn("flex items-center justify-center gap-2 py-3 sm:py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-xs sm:text-sm cursor-pointer")}
                   >
                     Proceed to Checkout <ArrowRight className="w-4 h-4" />
                   </motion.div>

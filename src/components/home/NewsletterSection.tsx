@@ -26,7 +26,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="py-20 bg-[#1A2129] relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#1A2129] relative overflow-hidden">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.025]"
@@ -83,7 +83,7 @@ export default function NewsletterSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.08 }}
-          className="text-3xl sm:text-4xl font-black text-[#E5E7EB] mb-3"
+          className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB] mb-3"
         >
           Get the{" "}
           <span
@@ -139,7 +139,7 @@ export default function NewsletterSection() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-[#0F1419] border border-[#E5E7EB]/10 text-[#E5E7EB] placeholder-[#E5E7EB]/25 text-sm focus:outline-none focus:border-[#00FF88]/40 focus:shadow-[0_0_16px_rgba(0,255,136,0.15)] transition-all"
+                  className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-[#0F1419] border border-[#E5E7EB]/10 text-[#E5E7EB] placeholder-[#E5E7EB]/25 text-xs sm:text-sm focus:outline-none focus:border-[#00FF88]/40 focus:shadow-[0_0_16px_rgba(0,255,136,0.15)] transition-all"
                 />
                 <motion.button
                   type="submit"
@@ -148,7 +148,7 @@ export default function NewsletterSection() {
                     boxShadow: "0 0 28px rgba(255,184,0,0.4)",
                   }}
                   whileTap={{ scale: 0.96 }}
-                  className="flex items-center justify-center gap-2 px-7 py-3.5 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-sm whitespace-nowrap tracking-wide"
+                  className="flex items-center justify-center gap-2 px-4 sm:px-7 py-2.5 sm:py-3.5 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-xs sm:text-sm whitespace-nowrap tracking-wide"
                 >
                   <Send className="w-4 h-4" />
                   Subscribe Free
@@ -174,7 +174,7 @@ export default function NewsletterSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.32 }}
-          className="flex flex-wrap items-center justify-center gap-4 mt-8"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-6 sm:mt-8"
         >
           {perks.map((perk) => (
             <div

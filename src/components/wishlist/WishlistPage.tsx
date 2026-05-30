@@ -36,7 +36,7 @@ export default function WishlistPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+        <div className="flex items-end justify-between mb-6 sm:mb-10 gap-4 flex-wrap">
           <div>
             <motion.p
               initial={{ opacity: 0, x: -16 }}
@@ -49,11 +49,11 @@ export default function WishlistPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 }}
-              className="text-3xl sm:text-4xl font-black text-[#E5E7EB]"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]"
             >
               My <span className="text-[#FFB800]" style={{ textShadow: "0 0 20px rgba(255,184,0,0.4)" }}>Wishlist</span>
               {mounted && count > 0 && (
-                <span className="ml-3 text-lg text-[#E5E7EB]/30 font-normal">({count} items)</span>
+                <span className="ml-2 text-sm sm:text-lg text-[#E5E7EB]/30 font-normal">({count})</span>
               )}
             </motion.h1>
           </div>
@@ -94,7 +94,7 @@ export default function WishlistPage() {
             <Link href="/products">
               <motion.span
                 whileHover={{ scale: 1.04, boxShadow: "0 0 24px rgba(0,255,136,0.3)" }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#00FF88] text-[#0F1419] font-bold rounded-xl text-sm cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[#00FF88] text-[#0F1419] font-bold rounded-xl text-xs sm:text-sm cursor-pointer"
               >
                 Browse Laptops <ArrowRight className="w-4 h-4" />
               </motion.span>
@@ -107,7 +107,7 @@ export default function WishlistPage() {
               initial="hidden"
               animate="show"
               transition={{ staggerChildren: 0.07 }}
-              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5"
             >
               <AnimatePresence mode="popLayout">
                 {items.map((product) => {
@@ -203,7 +203,7 @@ export default function WishlistPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl"
+              className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-6 bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-[#00FF88]/10 border border-[#00FF88]/20 rounded-xl flex items-center justify-center">
@@ -218,7 +218,7 @@ export default function WishlistPage() {
                 whileHover={{ scale: 1.04, boxShadow: "0 0 24px rgba(255,184,0,0.35)" }}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => items.filter((p) => p.inStock).forEach((p) => moveToCart(p.id))}
-                className="flex items-center gap-2 px-6 py-3 bg-[#FFB800] text-[#0F1419] font-bold rounded-xl text-sm whitespace-nowrap"
+                className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#FFB800] text-[#0F1419] font-bold rounded-xl text-xs sm:text-sm whitespace-nowrap"
               >
                 <ShoppingCart className="w-4 h-4" />
                 Add All to Cart

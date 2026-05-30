@@ -26,7 +26,7 @@ type PaymentData = { method: "card" | "paypal"; cardNumber: string; expiry: stri
 
 function StepIndicator({ current }: { current: Step }) {
   return (
-    <div className="flex items-center justify-center mb-10">
+    <div className="flex items-center justify-center mb-6 sm:mb-10">
       {STEPS.map((step, i) => {
         const done = current > step.n;
         const active = current === step.n;
@@ -138,18 +138,18 @@ export default function CheckoutPage() {
           <p className="text-[#00FF88] text-xs font-semibold uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
             <span className="w-5 h-px bg-[#00FF88]" /> Secure Checkout
           </p>
-          <h1 className="text-3xl font-black text-[#E5E7EB]">Checkout</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-[#E5E7EB]">Checkout</h1>
         </div>
 
         <StepIndicator current={step} />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-5 sm:gap-8">
           <div className="lg:col-span-2">
             <AnimatePresence mode="wait">
               {/* Step 1 — Shipping */}
               {step === 1 && (
                 <motion.div key="step1" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.3 }} className="space-y-5">
-                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-6 space-y-4">
+                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-4 sm:p-6 space-y-4">
                     <h2 className="text-base font-bold text-[#E5E7EB]">Shipping Information</h2>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <FormInput label="Full Name" value={shipping.name} onChange={(e) => setShipping({ ...shipping, name: e.target.value })} placeholder="John Doe" />
@@ -165,7 +165,7 @@ export default function CheckoutPage() {
                   </div>
 
                   {/* Shipping method */}
-                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-6 space-y-3">
+                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-4 sm:p-6 space-y-3">
                     <h2 className="text-base font-bold text-[#E5E7EB]">Shipping Method</h2>
                     {SHIPPING_METHODS.map((m) => (
                       <label key={m.id} className={cn("flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all", shipping.method === m.id ? "border-[#00FF88]/30 bg-[#00FF88]/5" : "border-[#E5E7EB]/5 hover:border-[#E5E7EB]/10")}>
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                   </div>
 
                   <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(2)}
-                    className="w-full py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2">
+                    className="w-full py-3 sm:py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2 text-sm">
                     Continue to Payment <ChevronRight className="w-4 h-4" />
                   </motion.button>
                 </motion.div>
@@ -191,7 +191,7 @@ export default function CheckoutPage() {
               {/* Step 2 — Payment */}
               {step === 2 && (
                 <motion.div key="step2" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.3 }} className="space-y-5">
-                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-6 space-y-5">
+                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-4 sm:p-6 space-y-5">
                     <h2 className="text-base font-bold text-[#E5E7EB]">Payment Method</h2>
                     {/* Method toggle */}
                     <div className="flex gap-3">
@@ -218,8 +218,8 @@ export default function CheckoutPage() {
                     )}
                   </div>
                   <div className="flex gap-3">
-                    <button onClick={() => setStep(1)} className="px-6 py-4 border border-[#E5E7EB]/8 text-[#E5E7EB]/50 rounded-xl text-sm font-semibold hover:border-[#E5E7EB]/15 transition-colors">← Back</button>
-                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(3)} className="flex-1 py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2">
+                    <button onClick={() => setStep(1)} className="px-4 sm:px-6 py-2.5 sm:py-4 border border-[#E5E7EB]/8 text-[#E5E7EB]/50 rounded-xl text-xs sm:text-sm font-semibold hover:border-[#E5E7EB]/15 transition-colors">← Back</button>
+                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(3)} className="flex-1 py-3 sm:py-4 bg-[#FFB800] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2 text-sm">
                       Review Order <ChevronRight className="w-4 h-4" />
                     </motion.button>
                   </div>
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
               {/* Step 3 — Review */}
               {step === 3 && (
                 <motion.div key="step3" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.3 }} className="space-y-5">
-                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-6 space-y-5">
+                  <div className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-4 sm:p-6 space-y-5">
                     <h2 className="text-base font-bold text-[#E5E7EB]">Review Your Order</h2>
                     {/* Shipping summary */}
                     <div className="bg-[#0F1419] rounded-xl p-4 space-y-1">
@@ -260,9 +260,9 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   <div className="flex gap-3">
-                    <button onClick={() => setStep(2)} className="px-6 py-4 border border-[#E5E7EB]/8 text-[#E5E7EB]/50 rounded-xl text-sm font-semibold hover:border-[#E5E7EB]/15 transition-colors">← Back</button>
+                    <button onClick={() => setStep(2)} className="px-4 sm:px-6 py-2.5 sm:py-4 border border-[#E5E7EB]/8 text-[#E5E7EB]/50 rounded-xl text-xs sm:text-sm font-semibold hover:border-[#E5E7EB]/15 transition-colors">← Back</button>
                     <motion.button whileHover={{ scale: 1.02, boxShadow: "0 0 28px rgba(0,255,136,0.35)" }} whileTap={{ scale: 0.97 }} onClick={placeOrder} disabled={placing}
-                      className="flex-1 py-4 bg-[#00FF88] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2 disabled:opacity-70">
+                      className="flex-1 py-3 sm:py-4 bg-[#00FF88] text-[#0F1419] font-black rounded-xl flex items-center justify-center gap-2 text-sm disabled:opacity-70">
                       {placing ? <><Loader2 className="w-4 h-4 animate-spin" /> Placing Order…</> : <>Place Order · {formatPrice(total)}</>}
                     </motion.button>
                   </div>
