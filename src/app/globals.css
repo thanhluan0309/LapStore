@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:      #0F1419;
+  --surface: #1A2129;
+  --neon:    #00FF88;
+  --gold:    #FFB800;
+  --text:    #E5E7EB;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg:      var(--bg);
+  --color-surface: var(--surface);
+  --color-neon:    var(--neon);
+  --color-gold:    var(--gold);
+  --color-text:    var(--text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Neon glow utilities */
+.glow-neon {
+  box-shadow: 0 0 20px rgba(0,255,136,0.4), 0 0 60px rgba(0,255,136,0.15);
+}
+.glow-neon-sm {
+  box-shadow: 0 0 10px rgba(0,255,136,0.35), 0 0 30px rgba(0,255,136,0.1);
+}
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255,184,0,0.4), 0 0 60px rgba(255,184,0,0.15);
+}
+.text-glow-neon {
+  text-shadow: 0 0 20px rgba(0,255,136,0.6), 0 0 40px rgba(0,255,136,0.3);
+}
+
+/* Neon border pulse */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,255,136,0.4); }
+  50%       { box-shadow: 0 0 24px rgba(0,255,136,0.8), 0 0 48px rgba(0,255,136,0.3); }
+}
+.animate-neon-pulse {
+  animation: neon-pulse 2.5s ease-in-out infinite;
+}
+
+/* Scan line overlay effect */
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(100vh); }
+}
+.scan-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,255,136,0.03) 50%, transparent 60%);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* Custom scrollbar for the whole page */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #00FF8866; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neon); }
