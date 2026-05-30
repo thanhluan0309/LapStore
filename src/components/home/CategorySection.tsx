@@ -25,10 +25,10 @@ const cardVariants: Variants = {
 
 export default function CategorySection() {
   return (
-    <section className="py-20 bg-[#0F1419]">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#0F1419]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex items-end justify-between mb-6 sm:mb-10">
           <div>
             <motion.p
               initial={{ opacity: 0, x: -20 }}
@@ -44,7 +44,7 @@ export default function CategorySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl font-black text-[#E5E7EB]"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]"
             >
               Find Your Perfect{" "}
               <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>
@@ -70,7 +70,7 @@ export default function CategorySection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4"
         >
           {categories.map((cat) => {
             const colors = CARD_COLORS[cat.id] || CARD_COLORS.business;
@@ -85,7 +85,7 @@ export default function CategorySection() {
                   transition: { duration: 0.25 },
                 }}
                 whileTap={{ scale: 0.96 }}
-                className="relative overflow-hidden rounded-2xl p-5 flex flex-col items-center text-center cursor-pointer bg-[#1A2129] border border-[#E5E7EB]/5 group"
+                className="relative overflow-hidden rounded-2xl p-3 sm:p-5 flex flex-col items-center text-center cursor-pointer bg-[#1A2129] border border-[#E5E7EB]/5 group"
                 style={{ transition: "box-shadow 0.25s" }}
               >
                 {/* Corner accent */}
@@ -96,7 +96,7 @@ export default function CategorySection() {
 
                 {/* Icon */}
                 <motion.div
-                  className="text-4xl mb-3 leading-none"
+                  className="text-3xl sm:text-4xl mb-2 sm:mb-3 leading-none"
                   whileHover={{ scale: 1.2, rotate: [-5, 5, 0] }}
                   transition={{ duration: 0.3 }}
                 >

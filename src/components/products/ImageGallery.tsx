@@ -60,7 +60,7 @@ export default function ImageGallery({ images, name }: Props) {
         </div>
 
         {/* Thumbnails */}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2">
           {images.map((img, i) => (
             <motion.button
               key={i}

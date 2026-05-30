@@ -53,14 +53,14 @@ const cardVariants: Variants = {
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-20 bg-[#0F1419] relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#0F1419] relative overflow-hidden">
       {/* Glow orbs */}
-      <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#00FF88]/4 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-[#CC44FF]/4 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-[#00FF88]/4 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-[#CC44FF]/4 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-8 sm:mb-14">
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-black text-[#E5E7EB]"
+            className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]"
           >
             Loved by{" "}
             <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>
@@ -102,7 +102,7 @@ export default function TestimonialsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5"
         >
           {testimonials.map((t) => (
             <motion.div
@@ -113,7 +113,7 @@ export default function TestimonialsSection() {
                 boxShadow: `0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px ${t.accent}25`,
                 transition: { duration: 0.2 },
               }}
-              className="bg-[#1A2129] rounded-2xl p-5 border border-[#E5E7EB]/5 group flex flex-col"
+              className="bg-[#1A2129] rounded-2xl p-4 sm:p-5 border border-[#E5E7EB]/5 group flex flex-col"
             >
               {/* Quote icon */}
               <Quote

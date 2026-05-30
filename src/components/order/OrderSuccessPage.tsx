@@ -50,7 +50,7 @@ export default function OrderSuccessPage({ orderId }: { orderId: string }) {
 
         {/* Heading */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-2">
-          <h1 className="text-4xl font-black text-[#E5E7EB]">
+          <h1 className="text-2xl sm:text-4xl font-black text-[#E5E7EB]">
             Order <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>Confirmed!</span>
           </h1>
           <p className="text-[#E5E7EB]/50">Thank you for your purchase. Your laptop is on its way!</p>
@@ -61,7 +61,7 @@ export default function OrderSuccessPage({ orderId }: { orderId: string }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-6 space-y-4 text-left"
+          className="bg-[#1A2129] border border-[#E5E7EB]/5 rounded-2xl p-4 sm:p-6 space-y-4 text-left"
         >
           {/* Order ID */}
           <div className="flex items-center justify-between">

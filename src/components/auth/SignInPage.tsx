@@ -118,7 +118,7 @@ export default function SignInPage() {
       </div>
 
       {/* Right panel — form */}
-      <div className="flex-1 flex items-center justify-center px-4 py-16 sm:px-8">
+      <div className="flex-1 flex items-center justify-center px-4 py-10 sm:py-16 sm:px-8">
         <motion.div
           variants={formVariants}
           initial="hidden"
@@ -143,7 +143,7 @@ export default function SignInPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 }}
-              className="text-3xl font-black text-[#E5E7EB]"
+              className="text-2xl sm:text-3xl font-black text-[#E5E7EB]"
             >
               Sign In
             </motion.h1>
@@ -249,7 +249,7 @@ export default function SignInPage() {
               whileHover={!loading && !success ? { scale: 1.02, boxShadow: "0 0 28px rgba(255,184,0,0.4)" } : {}}
               whileTap={!loading && !success ? { scale: 0.97 } : {}}
               className={cn(
-                "w-full py-3.5 rounded-xl font-black text-sm flex items-center justify-center gap-2 transition-all",
+                "w-full py-3 sm:py-3.5 rounded-xl font-black text-sm flex items-center justify-center gap-2 transition-all",
                 success
                   ? "bg-[#00FF88] text-[#0F1419]"
                   : "bg-[#FFB800] text-[#0F1419]"

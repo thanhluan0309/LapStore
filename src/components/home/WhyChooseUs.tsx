@@ -53,7 +53,7 @@ const cardVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 bg-[#1A2129] relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#1A2129] relative overflow-hidden">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.025]"
@@ -64,7 +64,7 @@ export default function WhyChooseUs() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-8 sm:mb-14">
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-black text-[#E5E7EB]"
+            className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB]"
           >
             Built for Gamers,{" "}
             <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>
@@ -101,7 +101,7 @@ export default function WhyChooseUs() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5"
         >
           {features.map((f) => {
             const Icon = f.icon;
@@ -114,13 +114,13 @@ export default function WhyChooseUs() {
                   boxShadow: `0 20px 50px rgba(0,0,0,0.4), 0 0 0 1px ${f.accent}25`,
                   transition: { duration: 0.2 },
                 }}
-                className="bg-[#0F1419] rounded-2xl p-6 border border-[#E5E7EB]/5 group cursor-default"
+                className="bg-[#0F1419] rounded-2xl p-4 sm:p-6 border border-[#E5E7EB]/5 group cursor-default"
               >
                 {/* Icon */}
                 <motion.div
                   whileHover={{ scale: 1.12, rotate: [0, -6, 6, 0] }}
                   transition={{ duration: 0.35 }}
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-xl flex items-center justify-center mb-3 sm:mb-4"
                   style={{
                     background: f.accent + "15",
                     border: `1px solid ${f.accent}30`,
