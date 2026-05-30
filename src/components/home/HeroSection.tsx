@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, ShoppingCart, Zap, ArrowRight } from "lucide
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { heroSlides } from "@/data/products";
 import { formatPrice, cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const ACCENT_COLORS: Record<number, { neon: string; glow: string }> = {
   0: { neon: "#00FF88", glow: "rgba(0,255,136,0.2)" },
@@ -21,9 +22,17 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+// Defined outside component — no recreation on re-render
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
+};
+
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const reducedMotion = useReducedMotion();
 
   const slide = heroSlides[current];
   const accent = ACCENT_COLORS[current];
@@ -38,13 +47,6 @@ export default function HeroSection() {
     setCurrent((c) => (c + dir + heroSlides.length) % heroSlides.length);
   }
 
-  // Keep slideVariants untyped as Variants — transition lives on the motion element
-  const slideVariants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
-  };
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0F1419] pt-20 scan-line">
       {/* Grid pattern */}
@@ -56,20 +58,41 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Animated orbs */}
-      <motion.div
-        key={current + "orb1"}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-1/3 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: accent.glow }}
-      />
-      <motion.div
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.08, 0.15, 0.08] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
-        style={{ background: "rgba(255,184,0,0.15)" }}
-      />
+      {/* Animated orbs — opacity-only animation, blur is static on inner div */}
+      {reducedMotion ? (
+        <>
+          <div
+            className="absolute top-1/4 right-1/3 w-[500px] h-[500px] pointer-events-none"
+            style={{ opacity: 0.2 }}
+          >
+            <div className="w-full h-full rounded-full blur-[120px]" style={{ background: accent.glow }} />
+          </div>
+          <div
+            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] pointer-events-none"
+            style={{ opacity: 0.1 }}
+          >
+            <div className="w-full h-full rounded-full blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
+          </div>
+        </>
+      ) : (
+        <>
+          <motion.div
+            key={current + "orb1"}
+            animate={{ opacity: [0.15, 0.25, 0.15] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 right-1/3 w-[500px] h-[500px] pointer-events-none"
+          >
+            <div className="w-full h-full rounded-full blur-[120px]" style={{ background: accent.glow }} />
+          </motion.div>
+          <motion.div
+            animate={{ opacity: [0.08, 0.15, 0.08] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] pointer-events-none"
+          >
+            <div className="w-full h-full rounded-full blur-[100px]" style={{ background: "rgba(255,184,0,0.15)" }} />
+          </motion.div>
+        </>
+      )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center py-12">
@@ -84,6 +107,7 @@ export default function HeroSection() {
               exit="exit"
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="space-y-6 z-10"
+              style={{ willChange: "transform, opacity" }}
             >
               <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-5">
                 {/* Badge */}
@@ -92,12 +116,16 @@ export default function HeroSection() {
                   className="inline-flex items-center gap-2 border text-xs font-bold px-4 py-1.5 rounded-full tracking-widest uppercase"
                   style={{ borderColor: accent.neon + "50", color: accent.neon, background: accent.glow }}
                 >
-                  <motion.span
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-2 h-2 rounded-full"
-                    style={{ background: accent.neon }}
-                  />
+                  {reducedMotion ? (
+                    <span className="w-2 h-2 rounded-full" style={{ background: accent.neon }} />
+                  ) : (
+                    <motion.span
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="w-2 h-2 rounded-full"
+                      style={{ background: accent.neon }}
+                    />
+                  )}
                   {slide.badge}
                 </motion.span>
 
@@ -173,20 +201,22 @@ export default function HeroSection() {
               exit="exit"
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="relative flex justify-center"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="relative">
-                {/* Glow behind image */}
+                {/* Glow behind image — opacity only, no scale */}
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.7, 0.5] }}
+                  animate={reducedMotion ? {} : { opacity: [0.5, 0.7, 0.5] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 rounded-3xl blur-3xl scale-90"
                   style={{ background: `radial-gradient(ellipse, ${accent.glow} 0%, transparent 70%)` }}
                 />
 
-                {/* Floating laptop */}
+                {/* Floating laptop — disable float on reduced motion */}
                 <motion.div
-                  animate={{ y: [0, -14, 0] }}
+                  animate={reducedMotion ? {} : { y: [0, -14, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ willChange: reducedMotion ? "auto" : "transform" }}
                 >
                   <img
                     src={slide.image}

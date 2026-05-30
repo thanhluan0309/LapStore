@@ -23,6 +23,11 @@ const cardVariants = {
   hidden: { opacity: 0, y: 24, scale: 0.97 },
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4 } },
 };
+// Items beyond the 6th appear instantly — no cascading delay on large grids
+const instantVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.3 } },
+};
 
 export default function ProductListingPage() {
   const searchParams = useSearchParams();
@@ -305,9 +310,9 @@ export default function ProductListingPage() {
                   <button onClick={clearAll} className="mt-4 text-[#00FF88] text-sm hover:underline">Clear all filters</button>
                 </motion.div>
               ) : (
-                <motion.div key="grid" initial="hidden" animate="show" transition={{ staggerChildren: 0.07 }} className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  {filtered.map((product) => (
-                    <motion.div key={product.id} variants={cardVariants}>
+                <motion.div key="grid" initial="hidden" animate="show" transition={{ staggerChildren: 0.04 }} className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                  {filtered.map((product, i) => (
+                    <motion.div key={product.id} variants={i < 6 ? cardVariants : instantVariants}>
                       <ProductCard product={product} />
                     </motion.div>
                   ))}

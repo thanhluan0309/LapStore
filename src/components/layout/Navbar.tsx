@@ -130,16 +130,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <motion.div
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.03 }}
-            >
-              <div className="w-8 h-8 bg-[#00FF88] rounded-lg flex items-center justify-center glow-neon-sm">
-                <Laptop className="w-4 h-4 text-[#0F1419]" />
-              </div>
-              <span className="text-xl font-black text-[#E5E7EB] tracking-tight">
-                LAP<span className="text-[#00FF88] text-glow-neon">STORE</span>
-              </span>
+            <motion.div whileHover={{ scale: 1.03 }}>
+              <Image src="/logo.svg" alt="LAPSTORE" width={140} height={41} priority />
             </motion.div>
           </Link>
 

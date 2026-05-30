@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Eye, EyeOff, Laptop, Loader2, AlertCircle, Check } from "lucide-react";
+import { Eye, EyeOff, Loader2, AlertCircle, Check } from "lucide-react";
+import Image from "next/image";
 import { type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -86,13 +87,8 @@ export default function SignInPage() {
 
         <div className="relative z-10 text-center space-y-8">
           {/* Logo */}
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-12 h-12 bg-[#00FF88] rounded-2xl flex items-center justify-center" style={{ boxShadow: "0 0 24px rgba(0,255,136,0.5)" }}>
-              <Laptop className="w-6 h-6 text-[#0F1419]" />
-            </div>
-            <span className="text-2xl font-black text-[#E5E7EB]">
-              LAP<span className="text-[#00FF88]" style={{ textShadow: "0 0 16px rgba(0,255,136,0.5)" }}>STORE</span>
-            </span>
+          <div className="flex justify-center">
+            <Image src="/logo.svg" alt="LAPSTORE" width={180} height={53} />
           </div>
 
           <div>
@@ -130,13 +126,8 @@ export default function SignInPage() {
           className="w-full max-w-md"
         >
           {/* Mobile logo */}
-          <div className="lg:hidden flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 bg-[#00FF88] rounded-lg flex items-center justify-center">
-              <Laptop className="w-4 h-4 text-[#0F1419]" />
-            </div>
-            <span className="text-xl font-black text-[#E5E7EB]">
-              LAP<span className="text-[#00FF88]">STORE</span>
-            </span>
+          <div className="lg:hidden mb-8">
+            <Image src="/logo.svg" alt="LAPSTORE" width={130} height={38} />
           </div>
 
           {/* Heading */}

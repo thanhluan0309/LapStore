@@ -3,16 +3,26 @@
 import { useState } from "react";
 import { Send, CheckCircle, Mail, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const perks = ["Weekly Deals", "New Arrivals", "Tech Reviews", "Exclusive Coupons"];
+const perks = [
+  "Weekly Deals",
+  "New Arrivals",
+  "Tech Reviews",
+  "Exclusive Coupons",
+];
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (email) { setSubmitted(true); setEmail(""); }
+    if (email) {
+      setSubmitted(true);
+      setEmail("");
+    }
   }
 
   return (
@@ -21,17 +31,29 @@ export default function NewsletterSection() {
       <div
         className="absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage: "linear-gradient(#00FF88 1px, transparent 1px), linear-gradient(90deg, #00FF88 1px, transparent 1px)",
+          backgroundImage:
+            "linear-gradient(#00FF88 1px, transparent 1px), linear-gradient(90deg, #00FF88 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
 
-      {/* Animated orb */}
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.16, 0.08] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00FF88] rounded-full blur-[120px] pointer-events-none"
-      />
+      {/* Ambient orb — opacity-only animation, static blur layer */}
+      {reducedMotion ? (
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] pointer-events-none"
+          style={{ opacity: 0.1 }}
+        >
+          <div className="w-full h-full bg-[#00FF88] rounded-full blur-[120px]" />
+        </div>
+      ) : (
+        <motion.div
+          animate={{ opacity: [0.08, 0.16, 0.08] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] pointer-events-none"
+        >
+          <div className="w-full h-full bg-[#00FF88] rounded-full blur-[120px]" />
+        </motion.div>
+      )}
 
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00FF88]/25 to-transparent" />
 
@@ -64,7 +86,10 @@ export default function NewsletterSection() {
           className="text-3xl sm:text-4xl font-black text-[#E5E7EB] mb-3"
         >
           Get the{" "}
-          <span className="text-[#00FF88]" style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}>
+          <span
+            className="text-[#00FF88]"
+            style={{ textShadow: "0 0 20px rgba(0,255,136,0.4)" }}
+          >
             Best Deals
           </span>{" "}
           First
@@ -77,7 +102,8 @@ export default function NewsletterSection() {
           transition={{ delay: 0.14 }}
           className="text-[#E5E7EB]/35 text-sm mb-8 leading-relaxed"
         >
-          Exclusive deals, new arrivals, and tech insights — delivered directly to your inbox before anyone else.
+          Exclusive deals, new arrivals, and tech insights — delivered directly
+          to your inbox before anyone else.
         </motion.p>
 
         {/* Form */}
@@ -98,7 +124,7 @@ export default function NewsletterSection() {
               >
                 <CheckCircle className="w-6 h-6 text-[#00FF88]" />
                 <p className="font-semibold text-[#E5E7EB]">
-                  You're in! Check your inbox for a welcome discount.
+                  You&apos;re in! Check your inbox for a welcome discount.
                 </p>
               </motion.div>
             ) : (
@@ -117,7 +143,10 @@ export default function NewsletterSection() {
                 />
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.04, boxShadow: "0 0 28px rgba(255,184,0,0.4)" }}
+                  whileHover={{
+                    scale: 1.04,
+                    boxShadow: "0 0 28px rgba(255,184,0,0.4)",
+                  }}
                   whileTap={{ scale: 0.96 }}
                   className="flex items-center justify-center gap-2 px-7 py-3.5 bg-[#FFB800] text-[#0F1419] font-black rounded-xl text-sm whitespace-nowrap tracking-wide"
                 >
@@ -148,7 +177,10 @@ export default function NewsletterSection() {
           className="flex flex-wrap items-center justify-center gap-4 mt-8"
         >
           {perks.map((perk) => (
-            <div key={perk} className="flex items-center gap-1.5 text-[#E5E7EB]/35 text-xs">
+            <div
+              key={perk}
+              className="flex items-center gap-1.5 text-[#E5E7EB]/35 text-xs"
+            >
               <Zap className="w-3 h-3 text-[#00FF88]" />
               {perk}
             </div>

@@ -11,11 +11,16 @@ const filters = ["All", "Gaming", "Business", "Creator", "Ultrabook", "Student"]
 
 const containerVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
+  show: { transition: { staggerChildren: 0.04 } },
 };
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45 } },
+};
+// Items beyond the 6th appear instantly — no cascading delay on large grids
+const instantVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.3 } },
 };
 
 export default function FeaturedProducts() {
@@ -27,7 +32,7 @@ export default function FeaturedProducts() {
       : featuredProducts.filter((p) => p.category.toLowerCase() === activeFilter.toLowerCase());
 
   return (
-    <section className="py-20 bg-[#1A2129]">
+    <section className="py-20 bg-[#1A2129] perf-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
@@ -94,8 +99,8 @@ export default function FeaturedProducts() {
           ))}
         </div>
 
-        {/* Product grid */}
-        <AnimatePresence mode="wait">
+        {/* Product grid — popLayout lets new cards appear while old ones exit */}
+        <AnimatePresence mode="popLayout">
           <motion.div
             key={activeFilter}
             variants={containerVariants}
@@ -103,8 +108,8 @@ export default function FeaturedProducts() {
             animate="show"
             className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
           >
-            {filtered.map((product) => (
-              <motion.div key={product.id} variants={cardVariants}>
+            {filtered.map((product, i) => (
+              <motion.div key={product.id} variants={i < 6 ? cardVariants : instantVariants}>
                 <ProductCard product={product} />
               </motion.div>
             ))}

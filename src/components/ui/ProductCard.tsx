@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, memo } from "react";
 import { Star, ShoppingCart, Heart, Eye, Package, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { useWishlist } from "@/context/WishlistContext";
 
 type Props = { product: Product };
 
-export default function ProductCard({ product }: Props) {
+const ProductCard = memo(function ProductCard({ product }: Props) {
   const [addedToCart, setAddedToCart] = useState(false);
   const [hovered, setHovered] = useState(false);
   const { addItem } = useCart();
@@ -22,12 +22,18 @@ export default function ProductCard({ product }: Props) {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  // Cleanup timeout to prevent state update on unmounted component
+  useEffect(() => {
+    if (!addedToCart) return;
+    const t = setTimeout(() => setAddedToCart(false), 2200);
+    return () => clearTimeout(t);
+  }, [addedToCart]);
+
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
     if (!product.inStock) return;
     addItem(product, 1);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2200);
   }
 
   function handleWishlist(e: React.MouseEvent) {
@@ -42,6 +48,7 @@ export default function ProductCard({ product }: Props) {
         onHoverEnd={() => setHovered(false)}
         whileHover={{ y: -6, boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,255,136,0.2)" }}
         transition={{ duration: 0.25 }}
+        style={{ willChange: "transform" }}
         className="group relative bg-[#1A2129] rounded-2xl overflow-hidden border border-[#E5E7EB]/5 h-full"
       >
         {/* Neon top border on hover */}
@@ -178,4 +185,6 @@ export default function ProductCard({ product }: Props) {
       </motion.div>
     </Link>
   );
-}
+});
+
+export default ProductCard;

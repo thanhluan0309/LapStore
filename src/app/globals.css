@@ -66,6 +66,24 @@ body {
   pointer-events: none;
 }
 
+/* Performance utilities */
+.animated-layer {
+  will-change: transform, opacity;
+}
+.perf-section {
+  contain: layout paint style;
+}
+
+/* Accessibility: respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .scan-line::after {
+    animation: none;
+  }
+  .animate-neon-pulse {
+    animation: none;
+  }
+}
+
 /* Scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;

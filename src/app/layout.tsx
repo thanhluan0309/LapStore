@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "LapStore — Premium Laptops at Best Prices",
   description: "Shop 500+ premium laptops from Apple, Dell, ASUS, Lenovo, HP, Razer and more. Expert support, free shipping, and 30-day returns.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

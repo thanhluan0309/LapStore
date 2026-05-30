@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, X, Camera, PlayCircle, Globe, Code2, Mail, Phone, MapPin, Zap } from "lucide-react";
+import { X, Camera, PlayCircle, Globe, Code2, Mail, Phone, MapPin, Zap } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   Shop: ["Gaming Laptops", "Business Laptops", "Student Laptops", "Creator Laptops", "Ultrabooks", "Budget Picks"],
@@ -30,17 +31,7 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="col-span-2 space-y-5">
-            <div className="flex items-center gap-2">
-              <div
-                className="w-9 h-9 bg-[#00FF88] rounded-xl flex items-center justify-center"
-                style={{ boxShadow: "0 0 16px rgba(0,255,136,0.4)" }}
-              >
-                <Laptop className="w-4.5 h-4.5 text-[#0F1419]" />
-              </div>
-              <span className="text-xl font-black text-[#E5E7EB] tracking-tight">
-                LAP<span className="text-[#00FF88]" style={{ textShadow: "0 0 12px rgba(0,255,136,0.5)" }}>STORE</span>
-              </span>
-            </div>
+            <Image src="/logo.svg" alt="LAPSTORE" width={150} height={44} />
 
             <p className="text-sm leading-relaxed max-w-xs">
               Your trusted source for premium laptops. 500+ models from all major brands, with expert support and the best prices guaranteed.
